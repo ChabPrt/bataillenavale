@@ -4,7 +4,6 @@
 
 int main() {
     init();
-    printf("Coucou");
 
     grid_case **gridPlayer= get_grid_player();
     gridPlayer[4][4].is_fired = true;
