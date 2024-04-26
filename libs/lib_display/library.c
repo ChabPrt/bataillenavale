@@ -25,7 +25,7 @@ void printGrids(grid_case **gridPlayer, grid_case **gridEnemy) {
                     }
                 }
             }
-            printf("%s ", gridPlayer[i][j].is_contain_ship || gridPlayer[i][j].is_sank ? "#" : ".");
+            printf("%s ", gridPlayer[i][j].is_contain_ship ? "#" : ".");
         }
         printf("    "); // Ecart entre grilles
         printf("%c ", 'A' + i); // Colonne de lettres de grille tirs
@@ -43,7 +43,7 @@ void printGrids(grid_case **gridPlayer, grid_case **gridEnemy) {
                     printf("\033[37m"); // Blanc
                 }
             }
-            printf("%s ", (gridEnemy[i][j].is_fired && gridEnemy[i][j].is_contain_ship) || gridEnemy[i][j].is_sank ? "#" : ".");
+            printf("%s ", (gridEnemy[i][j].is_fired || gridEnemy[i][j].is_sank ) && gridEnemy[i][j].is_contain_ship ? "#" : ".");
         }
         printf("\n");
     }
