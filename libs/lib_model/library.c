@@ -35,13 +35,31 @@ void initGrid(grid_case **grid) {
     }
 }
 
-void set_hit(int colonne, int row) {
+void set_hit_player(coordinate coordinate) {
     //todo : à implémenter
 }
 
-void set_ship(int colonne, int row) {
+void set_hit_ennemy(coordinate coordinate) {
     //todo : à implémenter
 }
+
+void set_ship_player(coordinate coordinate) {
+    //todo : à implémenter
+}
+
+void set_ship_ennemy(coordinate coordinate) {
+    //todo : à implémenter
+}
+
+bool is_killed_player(coordinate coordinate) {
+    //todo : à implémenter
+}
+
+bool is_killed_ennemy(coordinate coordinate) {
+    //todo : à implémenter
+}
+
+
 
 ship init_ship(const int size) {
     ship ship;

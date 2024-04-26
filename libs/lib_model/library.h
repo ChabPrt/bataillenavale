@@ -64,18 +64,40 @@ grid_case **get_grid_player();
 grid_case **get_grid_ordi();
 
 /**
- * Allow to set hit in the grille ordi
- * @param colonne The colonne to hit
- * @param row The row to hit
+ * Allow to set hit in the grille player
+ * @param coordinate Coordinate of the hit
  */
-void set_hit(int colonne, int row);
+void set_hit_player(coordinate coordinate);
 
 /**
- * Allow to set a ship to the grille ordi
- * @param colonne The colonne to set a ship
- * @param row The row to set a ship
+ * Allow to set hit to the grille ordi
+ * @param coordinate Coordinate of the hit
  */
-void set_ship(int colonne, int row);
+void set_hit_ennemy(coordinate coordinate);
+
+/**
+ * Allow to set ship to the grille player
+ * @param coordinate Coordinate of the ship
+ */
+void set_ship_player(coordinate coordinate);
+
+/**
+ * Allow to set ship to the grille ordi
+ * @param coordinate Coordinate of the ship
+ */
+void set_ship_ennemy(coordinate coordinate);
+
+/**
+ * Allow to know if a coordinate point is a killed ship to the player grid
+ * @param coordinate Coordinate to test
+ */
+bool is_killed_player(coordinate coordinate);
+
+/**
+ * Allow to know if a coordinate point is a killed ship to the ordi grid
+ * @param coordinate Coordinate to test
+ */
+bool is_killed_ennemy(coordinate coordinate);
 
 /**
  * Used to init the grid. That allocate all memory needed for the game.
