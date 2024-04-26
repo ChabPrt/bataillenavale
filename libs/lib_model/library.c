@@ -44,6 +44,7 @@ ship init_ship(const int size) {
     ship.is_killed = false;
     ship.coordinate = (coordinate *) malloc(size * sizeof(coordinate));
     return ship;
+
 }
 
 list_of_ships init_list_of_ships(
