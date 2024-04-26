@@ -3,6 +3,9 @@
 #include "../libs/lib_display/library.h"
 
 int main() {
+    init();
+    printf("Coucou");
+
     grid_case **gridPlayer= get_grid_player();
     gridPlayer[4][4].is_fired = true;
     gridPlayer[5][5].is_fired = true;
@@ -30,5 +33,6 @@ int main() {
     scanf("%d %f", &num, &fnum);
     printf("You entered %d and %f\n", num, fnum);
 
+    end();
     return 0;
 }

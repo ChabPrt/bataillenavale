@@ -1,5 +1,6 @@
 #include "library.h"
 
+#include <stdio.h>
 #include <stdlib.h>
 
 grid_case **grid_player;
@@ -75,10 +76,16 @@ void init() {
 
     initGrid(grid_player);
     initGrid(grid_ordi);
-
 }
 
 void end() {
+    for (int i = 0; i < GRID_SIZE; i++) {
+        free(grid_player[i]);
+    }
+    for (int i = 0; i < GRID_SIZE; i++) {
+        free(grid_ordi[i]);
+    }
+
     free(grid_player);
     free(grid_ordi);
 
