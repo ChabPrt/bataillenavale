@@ -26,6 +26,8 @@ list_of_ships get_ships_ordi() {
 
 void init_grid(grid_case **grid) {
     for (int i = 0; i < GRID_SIZE; i++) {
+        grid[i] = (grid_case *) malloc(GRID_SIZE * sizeof(grid_case));
+        if (grid[i] == NULL) { exit(1); }
         for (int j = 0; j < GRID_SIZE; ++j) {
             grid[i][j].is_contain_ship = false;
             grid[i][j].is_fired = false;
@@ -35,49 +37,57 @@ void init_grid(grid_case **grid) {
 }
 
 void set_hit_player(coordinate coordinate) {
-    //todo : à implémenter, à voir pour mettre dans une autre lib
+    //todo : à implémenter
 }
 
 void set_hit_ennemy(coordinate coordinate) {
-    //todo : à implémenter, à voir pour mettre dans une autre lib
+    //todo : à implémenter
 }
 
 void set_ship_player(coordinate coordinate) {
-    //todo : à implémenter, à voir pour mettre dans une autre lib
+    //todo : à implémenter
 }
 
 void set_ship_ennemy(coordinate coordinate) {
-    //todo : à implémenter, à voir pour mettre dans une autre lib
+    //todo : à implémenter
 }
+
+bool is_killed_player(coordinate coordinate) {
+    return grid_player[coordinate.row][coordinate.col].is_sank;
+}
+
+bool is_killed_ennemy(coordinate coordinate) {
+    return grid_ordi[coordinate.row][coordinate.col].is_sank;
+}
+
+
 
 ship init_ship(const int size) {
     ship ship;
     ship.is_killed = false;
     ship.coordinate = (coordinate *) malloc(size * sizeof(coordinate));
     return ship;
+
 }
 
-void init_list_of_ships(list_of_ships *list) {
-    list->sm_ship = init_ship(SMALL_SHIP);
-    list->md_ship1 = init_ship(MEDIUM_SHIP);
-    list->md_ship2 = init_ship(MEDIUM_SHIP);
-    list->lg_ship = init_ship(LARGE_SHIP);
-    list->xl_ship = init_ship(XL_SHIP);
+list_of_ships init_list_of_ships(
+) {
+    list_of_ships list;
+    list.sm_ship = init_ship(SMALL_SHIP);
+    list.md_ship1 = init_ship(MEDIUM_SHIP);
+    list.md_ship2 = init_ship(MEDIUM_SHIP);
+    list.lg_ship = init_ship(LARGE_SHIP);
+    list.xl_ship = init_ship(XL_SHIP);
+    return list;
 }
 
 void init() {
     grid_player = (grid_case **) malloc(GRID_SIZE * sizeof(grid_case *));
     if (grid_player == NULL) { exit(1); }
+    init_grid(grid_player);
     grid_ordi = (grid_case **) malloc(GRID_SIZE * sizeof(grid_case *));
     if (grid_ordi == NULL) { exit(1); }
-    for (int i = 0; i < GRID_SIZE; ++i) {
-        grid_player[i] = (grid_case *) malloc(GRID_SIZE * sizeof(grid_case));
-        if (grid_ordi[i] == NULL) { exit(1); }
-    }
-    init_grid(grid_player);
     init_grid(grid_ordi);
-    init_list_of_ships(&ships_ordi);
-    init_list_of_ships(&ships_player);
 }
 
 void end() {
