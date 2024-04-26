@@ -28,6 +28,10 @@ void initGrid(grid_case **grid) {
     for (int i = 0; i < GRID_SIZE; i++) {
         grid[i] = (grid_case *) malloc(GRID_SIZE * sizeof(grid_case));
         if (grid[i] == NULL) { exit(1); }
+        for (int j = 0; j < GRID_SIZE; ++j) {
+            grid[i][j].is_contain_ship = false;
+            grid[i][j].is_fired = false;
+        }
     }
 }
 
@@ -72,6 +76,8 @@ void end() {
         free(grid_player[i]);
         free(grid_ordi[i]);
     }
+    free(grid_player);
+    free(grid_ordi);
 
     free(ships_ordi.sm_ship.coordinate);
     free(ships_ordi.md_ship1.coordinate);
