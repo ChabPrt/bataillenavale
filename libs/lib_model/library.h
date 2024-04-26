@@ -11,6 +11,7 @@
 struct __grid_case {
     bool is_fired;
     bool is_contain_ship;
+    bool is_sank;
 };
 
 typedef struct __grid_case grid_case;
