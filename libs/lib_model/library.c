@@ -24,6 +24,14 @@ list_of_ships get_ships_ordi() {
     return ships_ordi;
 }
 
+void initGrid(grid_case **grid) {
+    for (int i = 0; i < GRID_SIZE; i++) {
+        for (int j = 0; j < GRID_SIZE; j++) {
+            grid[i][j].is_contain_ship = false;
+            grid[i][j].is_fired = false;
+        }
+    }
+}
 
 void set_hit(int colonne, int row) {
     //todo : à implémenter
@@ -64,6 +72,9 @@ void init() {
         grid_ordi[i] = (grid_case *) malloc(GRID_SIZE * sizeof(grid_case));
         if (grid_ordi[i] == NULL) { exit(1); }
     }
+
+    initGrid(grid_player);
+    initGrid(grid_ordi);
 
 }
 

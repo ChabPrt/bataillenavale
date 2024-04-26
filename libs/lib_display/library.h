@@ -3,14 +3,8 @@
 #ifndef LIBRARY_H
 #define LIBRARY_H
 
-#include <stdbool.h>
+#include "../lib_model/library.h"
 
-typedef struct {
-    bool isContainsShip;
-    bool hit;
-} Cell;
-
-void initGrid(Cell grid[][11]);
-void printGrids(Cell gridPlayer[][11], Cell gridEnemy[][11]);
+void printGrids(grid_case **gridPlayer, grid_case **gridEnemy);
 
 #endif

@@ -3,29 +3,27 @@
 #include "../libs/lib_display/library.h"
 
 int main() {
-    Cell gridPlayer[11][11];
-    initGrid(gridPlayer);
-    gridPlayer[4][4].hit = true;
-    gridPlayer[5][5].hit = true;
-    gridPlayer[5][5].isContainsShip = true;
-    gridPlayer[5][6].isContainsShip = true;
-    gridPlayer[5][7].isContainsShip = true;
-    gridPlayer[5][4].hit = true;
-    gridPlayer[5][6].hit = true;
+    grid_case **gridPlayer= get_grid_player();
+    gridPlayer[4][4].is_fired = true;
+    gridPlayer[5][5].is_fired = true;
+    gridPlayer[5][5].is_contain_ship = true;
+    gridPlayer[5][6].is_contain_ship = true;
+    gridPlayer[5][7].is_contain_ship = true;
+    gridPlayer[5][4].is_fired = true;
+    gridPlayer[5][6].is_fired = true;
 
-    Cell gridEnemy[11][11];
-    initGrid(gridEnemy);
-    gridEnemy[4][4].hit = true;
-    gridEnemy[5][5].hit = true;
-    gridEnemy[5][5].isContainsShip = true;
-    gridEnemy[5][6].isContainsShip = true;
-    gridEnemy[5][7].isContainsShip = true;
-    gridEnemy[5][4].hit = true;
-    gridEnemy[5][6].hit = true;
+    grid_case **gridEnemy= get_grid_ordi();
+    gridEnemy[4][4].is_fired = true;
+    gridEnemy[5][5].is_fired = true;
+    gridEnemy[5][5].is_contain_ship = true;
+    gridEnemy[5][6].is_contain_ship = true;
+    gridEnemy[5][7].is_contain_ship = true;
+    gridEnemy[5][4].is_fired = true;
+    gridEnemy[5][6].is_fired = true;
 
     printGrids(gridPlayer, gridEnemy);
 
-    //useless code -- just for waiting time
+    //💩 useless code -- just for waiting time
     int num;
     float fnum;
     printf("Enter an integer and a floating-point number: ");
