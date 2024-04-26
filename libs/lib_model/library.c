@@ -26,10 +26,8 @@ list_of_ships get_ships_ordi() {
 
 void initGrid(grid_case **grid) {
     for (int i = 0; i < GRID_SIZE; i++) {
-        for (int j = 0; j < GRID_SIZE; j++) {
-            grid[i][j].is_contain_ship = false;
-            grid[i][j].is_fired = false;
-        }
+        grid[i] = (grid_case *) malloc(GRID_SIZE * sizeof(grid_case));
+        if (grid[i] == NULL) { exit(1); }
     }
 }
 
@@ -60,27 +58,19 @@ list_of_ships init_list_of_ships(
 }
 
 void init() {
-    grid_player = (grid_case **) malloc(GRID_SIZE * sizeof(grid_case));
+    grid_player = (grid_case **) malloc(GRID_SIZE * sizeof(grid_case *));
     if (grid_player == NULL) { exit(1); }
-    for (int i = 0; i < GRID_SIZE; ++i) {
-        grid_player[i] = (grid_case *) malloc(GRID_SIZE * sizeof(grid_case));
-        if (grid_player[i] == NULL) { exit(1); }
-    }
-    grid_ordi = (grid_case **) malloc(GRID_SIZE * sizeof(grid_case));
-    if (grid_ordi == NULL) { exit(1); }
-    for (int i = 0; i < GRID_SIZE; ++i) {
-        grid_ordi[i] = (grid_case *) malloc(GRID_SIZE * sizeof(grid_case));
-        if (grid_ordi[i] == NULL) { exit(1); }
-    }
-
     initGrid(grid_player);
+    grid_ordi = (grid_case **) malloc(GRID_SIZE * sizeof(grid_case *));
+    if (grid_ordi == NULL) { exit(1); }
     initGrid(grid_ordi);
-
 }
 
 void end() {
-    free(grid_player);
-    free(grid_ordi);
+    for (int i = 0; i < GRID_SIZE; ++i) {
+        free(grid_player[i]);
+        free(grid_ordi[i]);
+    }
 
     free(ships_ordi.sm_ship.coordinate);
     free(ships_ordi.md_ship1.coordinate);
