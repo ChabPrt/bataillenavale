@@ -5,6 +5,9 @@
 grid_case** grid_player;
 grid_case** grid_ordi;
 
+list_of_ships ships_player;
+list_of_ships ships_ordi;
+
 grid_case **get_grid_player() {
     return grid_player;
 }
@@ -12,6 +15,15 @@ grid_case **get_grid_player() {
 grid_case **get_grid_ordi() {
     return grid_ordi;
 }
+
+list_of_ships get_ships_player() {
+    return ships_player;
+}
+
+list_of_ships get_ships_ordi() {
+    return ships_ordi;
+}
+
 
 void set_hit(int colonne, int row) {
     //todo : à implémenter

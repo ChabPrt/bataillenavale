@@ -23,7 +23,7 @@ struct __coordinate {
 typedef struct __coordinate coordinate;
 
 struct __ship {
-    coordinate* coordinate;
+    coordinate *coordinate;
     bool is_killed;
 };
 
@@ -38,6 +38,30 @@ struct __list_of_ships {
 };
 
 typedef struct __list_of_ships list_of_ships;
+
+/**
+ * Allow to get the player's list of ships
+ * @return The player's list of ships
+ */
+list_of_ships get_ships_player();
+
+/**
+ * Allow to get the ordi's list of ships
+ * @return The ordi's list of ships
+ */
+list_of_ships get_ships_ordi();
+
+/**
+ * Allow to get the player's grid
+ * @return The player's grid
+ */
+grid_case **get_grid_player();
+
+/**
+ * Allow to get the ordi's grid
+ * @return The ordi's grid
+ */
+grid_case **get_grid_ordi();
 
 /**
  * Allow to set hit in the grille ordi
