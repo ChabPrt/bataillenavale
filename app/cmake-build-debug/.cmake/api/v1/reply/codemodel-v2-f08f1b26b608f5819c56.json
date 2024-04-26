@@ -15,7 +15,9 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -30,7 +32,9 @@
 					"name" : "app",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1,
+						2
 					]
 				}
 			],
@@ -39,8 +43,22 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "app::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-app-Debug-392a6c07acc25c249815.json",
+					"jsonFile" : "target-app-Debug-cc0b0581e9bbf0663e96.json",
 					"name" : "app",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lib_display::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lib_display-Debug-f1c72ab2b72342d75775.json",
+					"name" : "lib_display",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lib_model::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lib_model-Debug-388adcaa16512a39fbc7.json",
+					"name" : "lib_model",
 					"projectIndex" : 0
 				}
 			]

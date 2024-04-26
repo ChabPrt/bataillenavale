@@ -2,10 +2,13 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "app.exe"
+			"path" : "liblib_display.dll"
 		},
 		{
-			"path" : "app.pdb"
+			"path" : "liblib_display.dll.a"
+		},
+		{
+			"path" : "liblib_display.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -13,7 +16,7 @@
 	{
 		"commands" : 
 		[
-			"add_executable"
+			"add_library"
 		],
 		"files" : 
 		[
@@ -27,7 +30,7 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 6,
+				"line" : 7,
 				"parent" : 0
 			}
 		]
@@ -39,6 +42,12 @@
 			[
 				{
 					"fragment" : "-g -std=gnu11 -fdiagnostics-color=always"
+				}
+			],
+			"defines" : 
+			[
+				{
+					"define" : "lib_display_EXPORTS"
 				}
 			],
 			"language" : "C",
@@ -56,15 +65,11 @@
 			]
 		}
 	],
-	"id" : "app::@6890427a1f51a3e7e1df",
+	"id" : "lib_display::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
 		[
-			{
-				"fragment" : "-g",
-				"role" : "flags"
-			},
 			{
 				"fragment" : "",
 				"role" : "flags"
@@ -76,8 +81,8 @@
 		],
 		"language" : "C"
 	},
-	"name" : "app",
-	"nameOnDisk" : "app.exe",
+	"name" : "lib_display",
+	"nameOnDisk" : "liblib_display.dll",
 	"paths" : 
 	{
 		"build" : ".",
@@ -98,9 +103,9 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "main.c",
+			"path" : "C:/dev/C/dev/bataille_navale/libs/lib_display/library.c",
 			"sourceGroupIndex" : 0
 		}
 	],
-	"type" : "EXECUTABLE"
+	"type" : "SHARED_LIBRARY"
 }
