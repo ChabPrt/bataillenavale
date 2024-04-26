@@ -31,6 +31,7 @@ void initGrid(grid_case **grid) {
         for (int j = 0; j < GRID_SIZE; ++j) {
             grid[i][j].is_contain_ship = false;
             grid[i][j].is_fired = false;
+            grid[i][j].is_sank = false;
         }
     }
 }
