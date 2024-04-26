@@ -4,7 +4,7 @@
 
 int main(void)
 {
-    init_grid();
+    init();
 
     printf("Hello, World!\n");
 

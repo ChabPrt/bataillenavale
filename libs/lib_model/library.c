@@ -33,7 +33,7 @@ void set_ship(int colonne, int row) {
     //todo : à implémenter
 }
 
-void init_grid() {
+void init() {
     grid_player = (grid_case**) malloc(GRID_SIZE*sizeof(grid_case));
     if (grid_player==NULL){ exit(1); }
     for (int i = 0; i < GRID_SIZE; ++i) {
@@ -46,6 +46,7 @@ void init_grid() {
         grid_ordi[i] = (grid_case*) malloc(GRID_SIZE*sizeof(grid_case));
         if (grid_ordi[i]==NULL){ exit(1); }
     }
+
 }
 
 void end() {

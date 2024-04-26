@@ -81,7 +81,7 @@ void set_ship(int colonne, int row);
  * Used to init the grid. That allocate all memory needed for the game.
  * Don't forget to use the end() function to free the memory
  */
-void init_grid();
+void init();
 
 /**
  * Used to free the memory of the data model
