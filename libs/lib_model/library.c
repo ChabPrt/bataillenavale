@@ -24,13 +24,14 @@ list_of_ships get_ships_ordi() {
     return ships_ordi;
 }
 
-void initGrid(grid_case **grid) {
+void init_grid(grid_case **grid) {
     for (int i = 0; i < GRID_SIZE; i++) {
         grid[i] = (grid_case *) malloc(GRID_SIZE * sizeof(grid_case));
         if (grid[i] == NULL) { exit(1); }
         for (int j = 0; j < GRID_SIZE; ++j) {
             grid[i][j].is_contain_ship = false;
             grid[i][j].is_fired = false;
+            grid[i][j].is_sank = false;
         }
     }
 }
@@ -52,11 +53,11 @@ void set_ship_ennemy(coordinate coordinate) {
 }
 
 bool is_killed_player(coordinate coordinate) {
-    //todo : à implémenter
+    return grid_player[coordinate.row][coordinate.col].is_sank;
 }
 
 bool is_killed_ennemy(coordinate coordinate) {
-    //todo : à implémenter
+    return grid_ordi[coordinate.row][coordinate.col].is_sank;
 }
 
 
@@ -83,10 +84,10 @@ list_of_ships init_list_of_ships(
 void init() {
     grid_player = (grid_case **) malloc(GRID_SIZE * sizeof(grid_case *));
     if (grid_player == NULL) { exit(1); }
-    initGrid(grid_player);
+    init_grid(grid_player);
     grid_ordi = (grid_case **) malloc(GRID_SIZE * sizeof(grid_case *));
     if (grid_ordi == NULL) { exit(1); }
-    initGrid(grid_ordi);
+    init_grid(grid_ordi);
 }
 
 void end() {
