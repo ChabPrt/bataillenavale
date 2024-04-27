@@ -2,6 +2,10 @@
 // Created by vivie on 26/04/2024.
 //
 
+/**
+ * File for list_of ship. Contained the method init to init list_oh_ship data model.
+ */
+
 #ifndef LIST_OF_SHIPS_H
 #define LIST_OF_SHIPS_H
 #include <stdbool.h>

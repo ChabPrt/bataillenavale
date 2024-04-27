@@ -2,6 +2,11 @@
 // Created by vivie on 26/04/2024.
 //
 
+/**
+ * File for grid_case. Contained the method init to init grid_case data model.
+ */
+
+
 #ifndef GRID_CASE_H
 #define GRID_CASE_H
 #include <stdbool.h>

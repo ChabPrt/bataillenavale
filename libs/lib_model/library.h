@@ -1,3 +1,7 @@
+/**
+ * The main file for data model. Used to store data and provide the init and end methods for data model.
+ */
+
 #ifndef LIB_MODEL_LIBRARY_H
 #define LIB_MODEL_LIBRARY_H
 #include <stdbool.h>
