@@ -70,27 +70,28 @@ ship init_ship(const int size) {
 
 }
 
-list_of_ships init_list_of_ships(
+void init_list_of_ships(
+    list_of_ships *list
 ) {
-    list_of_ships list;
-    list.sm_ship = init_ship(SMALL_SHIP);
-    list.md_ship1 = init_ship(MEDIUM_SHIP);
-    list.md_ship2 = init_ship(MEDIUM_SHIP);
-    list.lg_ship = init_ship(LARGE_SHIP);
-    list.xl_ship = init_ship(XL_SHIP);
-    return list;
+    list->sm_ship = init_ship(SMALL_SHIP);
+    list->md_ship1 = init_ship(MEDIUM_SHIP);
+    list->md_ship2 = init_ship(MEDIUM_SHIP);
+    list->lg_ship = init_ship(LARGE_SHIP);
+    list->xl_ship = init_ship(XL_SHIP);
 }
 
-void init() {
+void init_model() {
     grid_player = (grid_case **) malloc(GRID_SIZE * sizeof(grid_case *));
     if (grid_player == NULL) { exit(1); }
     init_grid(grid_player);
     grid_ordi = (grid_case **) malloc(GRID_SIZE * sizeof(grid_case *));
     if (grid_ordi == NULL) { exit(1); }
     init_grid(grid_ordi);
+    init_list_of_ships(&ships_ordi);
+    init_list_of_ships(&ships_player);
 }
 
-void end() {
+void end_model() {
     for (int i = 0; i < GRID_SIZE; ++i) {
         free(grid_player[i]);
         free(grid_ordi[i]);

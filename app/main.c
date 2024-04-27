@@ -2,6 +2,14 @@
 #include <stdio.h>
 #include "../libs/lib_display/library.h"
 
+void init() {
+    init_model();
+}
+
+void end() {
+    end_model();
+}
+
 int main() {
     init();
 
