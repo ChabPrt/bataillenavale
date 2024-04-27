@@ -104,11 +104,11 @@ bool is_killed_ennemy(coordinate coordinate);
  * Used to init the grid. That allocate all memory needed for the game.
  * Don't forget to use the end() function to free the memory
  */
-void init();
+void init_model();
 
 /**
  * Used to free the memory of the data model
  */
-void end();
+void end_model();
 
 #endif //LIB_MODEL_LIBRARY_H
