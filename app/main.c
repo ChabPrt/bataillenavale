@@ -5,10 +5,12 @@
 
 void init() {
     init_model();
+    //Mettre d'autres méthode d'init ici si besoin
 }
 
 void end() {
     end_model();
+    //Mettre d'autres méthode de fin ici si besoin
 }
 
 int main() {

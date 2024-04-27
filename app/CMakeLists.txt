@@ -7,7 +7,10 @@ set(CMAKE_C_STANDARD 11)
 add_library(lib_display SHARED ${CMAKE_CURRENT_SOURCE_DIR}/../libs/lib_display/library.c)
 
 #Add model library
-add_library(lib_model SHARED ${CMAKE_CURRENT_SOURCE_DIR}/../libs/lib_model/library.c)
+add_library(lib_model SHARED ${CMAKE_CURRENT_SOURCE_DIR}/../libs/lib_model/library.c
+        ../libs/lib_model/list_of_ships/list_of_ships.c
+        ../libs/lib_model/grid_case/grid_case.h
+        ../libs/lib_model/grid_case/grid_case.c)
 
 add_executable(app main.c
         ../libs/lib_display/library.c

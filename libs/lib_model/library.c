@@ -24,32 +24,20 @@ list_of_ships get_ships_ordi() {
     return ships_ordi;
 }
 
-void init_grid(grid_case **grid) {
-    for (int i = 0; i < GRID_SIZE; i++) {
-        grid[i] = (grid_case *) malloc(GRID_SIZE * sizeof(grid_case));
-        if (grid[i] == NULL) { exit(1); }
-        for (int j = 0; j < GRID_SIZE; ++j) {
-            grid[i][j].is_contain_ship = false;
-            grid[i][j].is_fired = false;
-            grid[i][j].is_sank = false;
-        }
-    }
-}
-
 void set_hit_player(coordinate coordinate) {
-    //todo : à implémenter
+    //todo : à implémenter. Peut être créé une autre lib pour ça.
 }
 
 void set_hit_ennemy(coordinate coordinate) {
-    //todo : à implémenter
+    //todo : à implémenter. Peut être créé une autre lib pour ça.
 }
 
 void set_ship_player(coordinate coordinate) {
-    //todo : à implémenter
+    //todo : à implémenter. Peut être créé une autre lib pour ça.
 }
 
 void set_ship_ennemy(coordinate coordinate) {
-    //todo : à implémenter
+    //todo : à implémenter. Peut être créé une autre lib pour ça.
 }
 
 bool is_killed_player(coordinate coordinate) {
@@ -58,26 +46,6 @@ bool is_killed_player(coordinate coordinate) {
 
 bool is_killed_ennemy(coordinate coordinate) {
     return grid_ordi[coordinate.row][coordinate.col].is_sank;
-}
-
-
-
-ship init_ship(const int size) {
-    ship ship;
-    ship.is_killed = false;
-    ship.coordinate = (coordinate *) malloc(size * sizeof(coordinate));
-    return ship;
-
-}
-
-void init_list_of_ships(
-    list_of_ships *list
-) {
-    list->sm_ship = init_ship(SMALL_SHIP);
-    list->md_ship1 = init_ship(MEDIUM_SHIP);
-    list->md_ship2 = init_ship(MEDIUM_SHIP);
-    list->lg_ship = init_ship(LARGE_SHIP);
-    list->xl_ship = init_ship(XL_SHIP);
 }
 
 void init_model() {
