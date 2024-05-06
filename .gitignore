@@ -1,2 +1,5 @@
 /app/cmake-build-debug/
 cmake-build-*/
+build/
+.vscode/
+.idea/
