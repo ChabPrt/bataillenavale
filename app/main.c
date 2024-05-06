@@ -1,9 +1,13 @@
 // main.c
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "../libs/lib_display/library.h"
 
+
 void init() {
+    // Initialisation du générateur de nombres aléatoires
+    srand(time(NULL));
     init_model();
     //Mettre d'autres méthode d'init ici si besoin
 }
@@ -17,16 +21,16 @@ int main() {
     init();
 
     grid_case **gridPlayer= get_grid_player();
-    gridPlayer[4][4].is_fired = true;
+    /*gridPlayer[4][4].is_fired = true;
     gridPlayer[5][5].is_fired = true;
     gridPlayer[5][5].is_contain_ship = true;
     gridPlayer[5][6].is_contain_ship = true;
     gridPlayer[5][7].is_contain_ship = true;
     gridPlayer[5][4].is_fired = true;
-    gridPlayer[5][6].is_fired = true;
+    gridPlayer[5][6].is_fired = true;*/
 
     grid_case **gridEnemy= get_grid_ordi();
-    gridEnemy[4][4].is_fired = true;
+    /*gridEnemy[4][4].is_fired = true;
     gridEnemy[5][5].is_fired = true;
     gridEnemy[5][5].is_contain_ship = true;
     gridEnemy[5][6].is_contain_ship = true;
@@ -35,7 +39,7 @@ int main() {
     gridEnemy[2][4].is_sank = true;
     gridEnemy[2][5].is_sank = true;
     gridEnemy[5][4].is_fired = true;
-    gridEnemy[5][6].is_fired = true;
+    gridEnemy[5][6].is_fired = true;*/
 
 
     printGrids(gridPlayer, gridEnemy);

@@ -9,6 +9,7 @@
 ship _init_ship(const int size) {
     ship ship;
     ship.is_killed = false;
+    ship.size = size;
     ship.coordinate = (coordinate *) malloc(size * sizeof(coordinate));
     return ship;
 }

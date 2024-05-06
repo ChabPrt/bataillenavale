@@ -25,6 +25,7 @@ typedef struct __coordinate coordinate;
 struct __ship {
     coordinate *coordinate;
     bool is_killed;
+    int size;
 };
 
 typedef struct __ship ship;
