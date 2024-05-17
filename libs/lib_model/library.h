@@ -42,7 +42,7 @@ void set_hit_player(coordinate coordinate);
  * Allow to set hit to the grille ordi
  * @param coordinate Coordinate of the hit
  */
-void set_hit_ennemy(coordinate coordinate);
+void set_hit_ordi(coordinate coordinate);
 
 /**
  * Allow to know if the ordi has won

@@ -25,28 +25,87 @@ list_of_ships get_ships_ordi() {
     return ships_ordi;
 }
 
-bool _is_all_ship_are_sank(list_of_ships listOfShips) {
-    return listOfShips.sm_ship.is_killed == true &&
-           listOfShips.md_ship1.is_killed == true &&
-           listOfShips.md_ship2.is_killed == true &&
-           listOfShips.lg_ship.is_killed == true &&
-           listOfShips.xl_ship.is_killed == true;
+bool _is_all_ship_are_sank(list_of_ships *listOfShips) {
+    return listOfShips->sm_ship.is_killed == true &&
+           listOfShips->md_ship1.is_killed == true &&
+           listOfShips->md_ship2.is_killed == true &&
+           listOfShips->lg_ship.is_killed == true &&
+           listOfShips->xl_ship.is_killed == true;
 }
 
 bool is_ordi_has_won() {
-    return _is_all_ship_are_sank(ships_player);
+    return _is_all_ship_are_sank(&ships_player);
 }
 
 bool is_player_has_won() {
-    return _is_all_ship_are_sank(ships_ordi);
+    return _is_all_ship_are_sank(&ships_ordi);
+}
+
+
+void _set_sank(list_of_ships *listOfShips, grid_case **pGridCase){
+
+    const int ships_amount = 5;
+    ship *computer_ships[ships_amount];
+
+    computer_ships[0] = &listOfShips->sm_ship;
+    computer_ships[1] = &listOfShips->md_ship1;
+    computer_ships[2] = &listOfShips->md_ship2;
+    computer_ships[3] = &listOfShips->lg_ship;
+    computer_ships[4] = &listOfShips->xl_ship;
+
+    for (int ship_index_i = 0; ship_index_i < ships_amount; ship_index_i++) {
+        ship* curr_ship = computer_ships[ship_index_i];
+
+        //Vérifier que les coordonées tirées appartiennent au bateau en cours
+        //Vérifier s'il est coulé
+        int nbOfCaseShank = 0;
+
+        for (int i = 0; i < curr_ship->size; i++) {
+            grid_case* g_case = &pGridCase[curr_ship->coordinate[i].row][curr_ship->coordinate[i].col];
+            if (g_case->is_contain_ship == true && g_case->is_fired == true){
+                nbOfCaseShank++;
+            }
+        }
+
+        //Si le beateau est complétement dans l'eau
+        //On le marque comme couler
+        if (nbOfCaseShank == curr_ship->size){
+            for (int i = 0; i < curr_ship->size; i++) {
+                grid_case *g_case = &pGridCase[curr_ship->coordinate[i].row][curr_ship->coordinate[i].col];
+                g_case->is_sank = true;
+            }
+            curr_ship->is_killed = true;
+        }
+    }
+}
+
+void printGrid(){
+    printf("  ");
+    for(int i = 1;i <= GRID_SIZE;i++) printf("%d ",i);
+    printf("\n");
+    for(int i = 0;i < GRID_SIZE;i++){
+
+        printf("%c ",'a'+i);
+        for(int y = 0;y < GRID_SIZE;y++){
+            printf("%d ",grid_ordi[i][y].is_contain_ship);
+        }
+        printf("\n");
+    }
 }
 
 void set_hit_player(coordinate coordinate) {
-    //todo : à implémenter. Peut être créé une autre lib pour ça.
+    grid_case* g_case = &grid_ordi[coordinate.row][coordinate.col];
+    g_case->is_fired = true;
+    _set_sank(&ships_ordi, grid_ordi);
+    printGrid();
 }
 
-void set_hit_ennemy(coordinate coordinate) {
-    //todo : à implémenter. Peut être créé une autre lib pour ça.
+
+
+void set_hit_ordi(coordinate coordinate) {
+    grid_case* g_case = &grid_player[coordinate.row][coordinate.col];
+    g_case->is_fired = true;
+    _set_sank(&ships_player, grid_player);
 }
 
 bool is_killed_player(coordinate coordinate) {
@@ -118,6 +177,10 @@ void place_ship_on_grid(grid_case **grid, list_of_ships *list_of_ships) {
 
                 grid_case *target_case = &grid[local_y][local_x];
                 target_case->is_contain_ship = true;
+
+                //J ai fait une erreur oupsi
+                curr_ship.coordinate[i].col = local_x;
+                curr_ship.coordinate[i].row = local_y;
             }
 
             break;
