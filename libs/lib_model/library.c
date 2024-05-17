@@ -25,19 +25,27 @@ list_of_ships get_ships_ordi() {
     return ships_ordi;
 }
 
+bool _is_all_ship_are_sank(list_of_ships listOfShips) {
+    return listOfShips.sm_ship.is_killed == true &&
+           listOfShips.md_ship1.is_killed == true &&
+           listOfShips.md_ship2.is_killed == true &&
+           listOfShips.lg_ship.is_killed == true &&
+           listOfShips.xl_ship.is_killed == true;
+}
+
+bool is_ordi_has_won() {
+    return _is_all_ship_are_sank(ships_player);
+}
+
+bool is_player_has_won() {
+    return _is_all_ship_are_sank(ships_ordi);
+}
+
 void set_hit_player(coordinate coordinate) {
     //todo : à implémenter. Peut être créé une autre lib pour ça.
 }
 
 void set_hit_ennemy(coordinate coordinate) {
-    //todo : à implémenter. Peut être créé une autre lib pour ça.
-}
-
-void set_ship_player(coordinate coordinate) {
-    //todo : à implémenter. Peut être créé une autre lib pour ça.
-}
-
-void set_ship_ennemy(coordinate coordinate) {
     //todo : à implémenter. Peut être créé une autre lib pour ça.
 }
 
@@ -60,11 +68,11 @@ void place_ship_on_grid(grid_case **grid, list_of_ships *list_of_ships) {
     const int ships_amount = 5;
     ship ships_s[ships_amount];
 
-    ships_s[0]= list_of_ships->sm_ship;
-    ships_s[1]= list_of_ships->md_ship1;
-    ships_s[2]= list_of_ships->md_ship2;
-    ships_s[3]= list_of_ships->lg_ship;
-    ships_s[4]= list_of_ships->xl_ship;
+    ships_s[0] = list_of_ships->sm_ship;
+    ships_s[1] = list_of_ships->md_ship1;
+    ships_s[2] = list_of_ships->md_ship2;
+    ships_s[3] = list_of_ships->lg_ship;
+    ships_s[4] = list_of_ships->xl_ship;
 
     //Je boucle sur tous les bateaux
     for (int ship_index_i = 0; ship_index_i < ships_amount; ship_index_i++) {
