@@ -56,51 +56,51 @@ bool is_killed_ennemy(coordinate coordinate) {
  * @param grid Grillé cible
  * @param list_of_ships Liste des bateaux
  */
-void place_ship_on_grid(grid_case **grid,list_of_ships *list_of_ships){
+void place_ship_on_grid(grid_case **grid, list_of_ships *list_of_ships) {
     const int ships_amount = 5;
     ship ships_s[ships_amount] = {
-        list_of_ships->sm_ship,
-        list_of_ships->md_ship1,
-        list_of_ships->md_ship2,
-        list_of_ships->lg_ship,
-        list_of_ships->xl_ship,
+            list_of_ships->sm_ship,
+            list_of_ships->md_ship1,
+            list_of_ships->md_ship2,
+            list_of_ships->lg_ship,
+            list_of_ships->xl_ship,
     };
 
     //Je boucle sur tous les bateaux
-    for(int ship_index_i = 0; ship_index_i < ships_amount; ship_index_i++){
+    for (int ship_index_i = 0; ship_index_i < ships_amount; ship_index_i++) {
         ship curr_ship = ships_s[ship_index_i];
 
         //On détermine si on le place à la vertical(0) ou à l'horizontal(1)
-        int isHorizontal = ( rand() % 2 ) & 0x3;
+        int isHorizontal = (rand() % 2) & 0x3;
 
         int next = 0;
-        do{
+        do {
             //On utilise les coordonnées aléatoires
             int y_max = isHorizontal == 1 ? GRID_SIZE : GRID_SIZE - curr_ship.size;
             int x_max = isHorizontal == 1 ? GRID_SIZE - curr_ship.size : GRID_SIZE;
             int y = rand() % y_max;
-            int x = rand() %  x_max;
+            int x = rand() % x_max;
 
             //Si on est en dehors, on recommence
-            if(y < 0 || x < 0 || y >= y_max || x >= x_max ) continue;
+            if (y < 0 || x < 0 || y >= y_max || x >= x_max) continue;
             bool alreadyHasShipAtCoord = false;
 
             //On regarde si les cases sont libres
-            for (int i = 0; i < curr_ship.size; ++i){
+            for (int i = 0; i < curr_ship.size; ++i) {
 
                 int local_x = isHorizontal == 1 ? x + i : x;
                 int local_y = isHorizontal == 1 ? y : y + i;
 
                 //On recommence, un bateau est déjà présent ici
-                if(grid[local_y][local_x].is_contain_ship){
+                if (grid[local_y][local_x].is_contain_ship) {
                     alreadyHasShipAtCoord = true;
                     break;
                 };
             }
-            if(alreadyHasShipAtCoord == true) continue;
+            if (alreadyHasShipAtCoord == true) continue;
 
             //On peut placer un bateau ici
-            for (int i = 0; i < curr_ship.size; ++i){
+            for (int i = 0; i < curr_ship.size; ++i) {
                 int local_x = isHorizontal == 1 ? x + i : x;
                 int local_y = isHorizontal == 1 ? y : y + i;
 
@@ -113,7 +113,7 @@ void place_ship_on_grid(grid_case **grid,list_of_ships *list_of_ships){
             }
 
             break;
-        }while (next == 0);
+        } while (next == 0);
 
     }
 }
@@ -130,8 +130,8 @@ void init_model() {
     init_list_of_ships(&ships_player);
 
     //placement des bateaux sur la grilles
-    place_ship_on_grid(grid_player,&ships_player);
-    place_ship_on_grid(grid_ordi,&ships_ordi);
+    place_ship_on_grid(grid_player, &ships_player);
+    place_ship_on_grid(grid_ordi, &ships_ordi);
 
 }
 
