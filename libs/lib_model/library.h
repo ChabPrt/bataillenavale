@@ -57,18 +57,6 @@ bool is_ordi_has_won();
 bool is_player_has_won();
 
 /**
- * Allow to know if a coordinate point is a killed ship to the player grid
- * @param coordinate Coordinate to test
- */
-bool is_killed_player(coordinate coordinate);
-
-/**
- * Allow to know if a coordinate point is a killed ship to the ordi grid
- * @param coordinate Coordinate to test
- */
-bool is_killed_ennemy(coordinate coordinate);
-
-/**
  * Used to init the grid. That allocate all memory needed for the game.
  * Don't forget to use the end() function to free the memory
  */

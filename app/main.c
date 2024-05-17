@@ -35,14 +35,14 @@ int main() {
         //Logique du joueur
         //On demande la colonne
         int colSpan = 1;
-        printf("Sur quelle ligne portera votre tir ? ( 1 - 10 )");
+        printf("Sur quelle colonne portera votre tir ? ( 1 - 10 )");
         scanf("%d", &colSpan);
 
         if(!(1 <= colSpan && colSpan <= GRID_SIZE)) continue;
 
         //On demande la ligne
         int rowSpan = 0;
-        printf("Sur quelle colonne portera votre tir ? ( A - J )");
+        printf("Sur quelle ligne portera votre tir ? ( A - J )");
         scanf("%s", &rowSpan);
 
         //Vérification si caractère n'est pas entre A et J ou a et j;
@@ -84,7 +84,6 @@ int main() {
         nbRound++;
     }
 
-    //while(1);
     end();
     char reboot = 'n';
     printf("Merci d'avoir joue !\n Souhaitez vous recommencer ? (y/n)");

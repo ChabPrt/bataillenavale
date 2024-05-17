@@ -79,25 +79,10 @@ void _set_sank(list_of_ships *listOfShips, grid_case **pGridCase){
     }
 }
 
-void printGrid(){
-    printf("  ");
-    for(int i = 1;i <= GRID_SIZE;i++) printf("%d ",i);
-    printf("\n");
-    for(int i = 0;i < GRID_SIZE;i++){
-
-        printf("%c ",'a'+i);
-        for(int y = 0;y < GRID_SIZE;y++){
-            printf("%d ",grid_ordi[i][y].is_contain_ship);
-        }
-        printf("\n");
-    }
-}
-
 void set_hit_player(coordinate coordinate) {
     grid_case* g_case = &grid_ordi[coordinate.row][coordinate.col];
     g_case->is_fired = true;
     _set_sank(&ships_ordi, grid_ordi);
-    printGrid();
 }
 
 
@@ -106,14 +91,6 @@ void set_hit_ordi(coordinate coordinate) {
     grid_case* g_case = &grid_player[coordinate.row][coordinate.col];
     g_case->is_fired = true;
     _set_sank(&ships_player, grid_player);
-}
-
-bool is_killed_player(coordinate coordinate) {
-    return grid_player[coordinate.row][coordinate.col].is_sank;
-}
-
-bool is_killed_ennemy(coordinate coordinate) {
-    return grid_ordi[coordinate.row][coordinate.col].is_sank;
 }
 
 /**
