@@ -20,14 +20,19 @@ void end() {
 int main() {
     init();
 
-    grid_case **gridPlayer= get_grid_player();
-    grid_case **gridEnemy= get_grid_ordi();
+    grid_case **gridPlayer = get_grid_player();
+    grid_case **gridEnemy = get_grid_ordi();
 
     int nbRound = 1;
     bool partyFinished = false;
-    while(!partyFinished){
+    while (!partyFinished) {
         //Permet de clear la console
-        system("cls");
+        #if defined(unix) || defined(__unix__) || defined(__unix)
+                system("clear");
+        #else
+                system("cls");
+        #endif
+
 
         printf(nbRound == 1 ? "Tour %d\n" : "Tours %d\n", nbRound);
         printGrids(gridPlayer, gridEnemy);
@@ -38,7 +43,7 @@ int main() {
         printf("Sur quelle colonne portera votre tir ? ( 1 - 10 )");
         scanf("%d", &colSpan);
 
-        if(!(1 <= colSpan && colSpan <= GRID_SIZE)) continue;
+        if (!(1 <= colSpan && colSpan <= GRID_SIZE)) continue;
 
         //On demande la ligne
         int rowSpan = 0;
@@ -46,12 +51,14 @@ int main() {
         scanf("%s", &rowSpan);
 
         //Vérification si caractère n'est pas entre A et J ou a et j;
-        if(!(( (int) 'A' <= rowSpan && rowSpan <= (int) 'J') || ((int) 'a' <= rowSpan && rowSpan <= (int) 'j'))) continue;
+        if (!(((int) 'A' <= rowSpan && rowSpan <= (int) 'J') ||
+              ((int) 'a' <= rowSpan && rowSpan <= (int) 'j')))
+            continue;
 
         //Correction des positions
-        if( (int) 'A' <= rowSpan && rowSpan <= (int) 'J'){
+        if ((int) 'A' <= rowSpan && rowSpan <= (int) 'J') {
             rowSpan -= (int) 'A';
-        }else{
+        } else {
             rowSpan -= (int) 'a';
         }
         colSpan--;
@@ -63,7 +70,7 @@ int main() {
 
         set_hit_player(playerShoot);
 
-        if(is_player_has_won()){
+        if (is_player_has_won()) {
             printf("Victoire !");
             partyFinished = true;
             continue;
@@ -76,7 +83,7 @@ int main() {
 
         set_hit_ordi(ordiShoot);
 
-        if(is_ordi_has_won()){
+        if (is_ordi_has_won()) {
             printf("Perdu !");
             partyFinished = true;
             continue;
@@ -89,6 +96,6 @@ int main() {
     printf("Merci d'avoir joue !\n Souhaitez vous recommencer ? (y/n)");
     scanf("%s", &reboot);
 
-    if('y' == reboot) main();
+    if ('y' == reboot) main();
 
 }

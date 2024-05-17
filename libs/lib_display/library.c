@@ -18,6 +18,7 @@ void _printEnemyGrid(grid_case **gridEnemy, int i) {
             }
         }
         printf("%s ", (gridEnemy[i][j].is_fired || gridEnemy[i][j].is_sank ) && gridEnemy[i][j].is_contain_ship ? "#" : ".");
+        printf("\033[37m"); // Blanc
     }
 }
 
@@ -41,6 +42,7 @@ void _printPlayerGrid(grid_case **gridPlayer, int i) {
             }
         }
         printf("%s ", gridPlayer[i][j].is_contain_ship ? "#" : ".");
+        printf("\033[37m"); // Blanc
     }
 }
 
