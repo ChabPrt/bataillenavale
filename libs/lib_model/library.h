@@ -45,16 +45,16 @@ void set_hit_player(coordinate coordinate);
 void set_hit_ennemy(coordinate coordinate);
 
 /**
- * Allow to set ship to the grille player
- * @param coordinate Coordinate of the ship
+ * Allow to know if the ordi has won
+ * @return true if the ordi has won, false otherwise
  */
-void set_ship_player(coordinate coordinate);
+bool is_ordi_has_won();
 
 /**
- * Allow to set ship to the grille ordi
- * @param coordinate Coordinate of the ship
+ * Allow to know if the player has won
+ * @return true if the ordi has won, false otherwise
  */
-void set_ship_ennemy(coordinate coordinate);
+bool is_player_has_won();
 
 /**
  * Allow to know if a coordinate point is a killed ship to the player grid
