@@ -17,6 +17,7 @@ void end() {
     //Mettre d'autres méthode de fin ici si besoin
 }
 
+
 int main() {
     init();
 
@@ -27,11 +28,11 @@ int main() {
     bool partyFinished = false;
     while (!partyFinished) {
         //Permet de clear la console
-        #if defined(unix) || defined(__unix__) || defined(__unix)
-                system("clear");
-        #else
-                system("cls");
-        #endif
+#if defined(unix) || defined(__unix__) || defined(__unix)
+        system("clear");
+#else
+        system("cls");
+#endif
 
 
         printf(nbRound == 1 ? "Tour %d\n" : "Tours %d\n", nbRound);
@@ -77,12 +78,7 @@ int main() {
         }
 
         //Logique de l'odinateur
-        coordinate ordiShoot;
-        ordiShoot.row = rand() % GRID_SIZE;
-        ordiShoot.col = rand() % GRID_SIZE;
-
-        set_hit_ordi(ordiShoot);
-
+        shoot_ordi();
         if (is_ordi_has_won()) {
             printf("Perdu !");
             partyFinished = true;

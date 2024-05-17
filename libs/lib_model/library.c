@@ -9,6 +9,9 @@ grid_case **grid_ordi;
 list_of_ships ships_player;
 list_of_ships ships_ordi;
 
+coordinate lastHit = {-1, -1};
+int mode = 0;
+
 grid_case **get_grid_player() {
     return grid_player;
 }
@@ -86,12 +89,59 @@ void set_hit_player(coordinate coordinate) {
 }
 
 
+int _isValidAttack(grid_case **grid, int row, int col) {
+    return row >= 0 && row < GRID_SIZE && col >= 0 && col < GRID_SIZE && grid[row][col].is_fired == false;
+}
 
-void set_hit_ordi(coordinate coordinate) {
+coordinate _getAIAttack() {
+    coordinate attack;
+    int directions[4][2] = {{0,  1},
+                            {1,  0},
+                            {0,  -1},
+                            {-1, 0}};
+
+    if (mode == 0) {  // Mode chasse
+        do {
+            attack.row = rand() % GRID_SIZE;
+            attack.col = rand() % GRID_SIZE;
+        } while (!_isValidAttack(grid_player, attack.row, attack.col));
+
+    } else {  // Mode ciblage
+        for (int i = 0; i < 4; i++) {
+            int newRow = lastHit.row + directions[i][0];
+            int newCol = lastHit.col + directions[i][1];
+            if (_isValidAttack(grid_player, newRow, newCol)) {
+                attack.row = newRow;
+                attack.col = newCol;
+                return attack;
+            }
+        }
+        mode = 0;  // Si toutes les directions sont invalides, revenir en mode chasse
+        attack = _getAIAttack(grid_player, lastHit, mode);
+    }
+
+    return attack;
+}
+
+void _set_hit_ordi(coordinate coordinate) {
     grid_case* g_case = &grid_player[coordinate.row][coordinate.col];
     g_case->is_fired = true;
     _set_sank(&ships_player, grid_player);
 }
+
+void shoot_ordi(){
+    coordinate ordiShoot = _getAIAttack();
+
+    _set_hit_ordi(ordiShoot);
+
+    if (grid_player[ordiShoot.row][ordiShoot.col].is_fired == true &&
+        grid_player[ordiShoot.row][ordiShoot.col].is_contain_ship == true &&
+        grid_player[ordiShoot.row][ordiShoot.col].is_sank == false) {
+        lastHit = ordiShoot;
+        mode = 1;
+    }
+}
+
 
 /**
  * La méthode doit positionner les bateaux dans la grille

@@ -33,16 +33,15 @@ grid_case **get_grid_player();
 grid_case **get_grid_ordi();
 
 /**
- * Allow to set hit in the grille player
+ * Allow to set hit in the player grid player
  * @param coordinate Coordinate of the hit
  */
 void set_hit_player(coordinate coordinate);
 
 /**
- * Allow to set hit to the grille ordi
- * @param coordinate Coordinate of the hit
+ * Allow to trigger an automatic shoot from the computer
  */
-void set_hit_ordi(coordinate coordinate);
+void shoot_ordi();
 
 /**
  * Allow to know if the ordi has won
