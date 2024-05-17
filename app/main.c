@@ -27,7 +27,7 @@ int main() {
     bool partyFinished = false;
     while(!partyFinished){
         //Permet de clear la console
-        //system("cls");
+        system("cls");
 
         printf(nbRound == 1 ? "Tour %d\n" : "Tours %d\n", nbRound);
         printGrids(gridPlayer, gridEnemy);
@@ -45,7 +45,6 @@ int main() {
         printf("Sur quelle colonne portera votre tir ? ( A - J )");
         scanf("%s", &rowSpan);
 
-
         //Vérification si caractère n'est pas entre A et J ou a et j;
         if(!(( (int) 'A' <= rowSpan && rowSpan <= (int) 'J') || ((int) 'a' <= rowSpan && rowSpan <= (int) 'j'))) continue;
 
@@ -62,24 +61,35 @@ int main() {
         playerShoot.row = rowSpan;
         playerShoot.col = colSpan;
 
-        printf("Coord: Col: %d Row:%d\n",playerShoot.col,playerShoot.row);
-
         set_hit_player(playerShoot);
 
         if(is_player_has_won()){
             printf("Victoire !");
-            break;
+            partyFinished = true;
+            continue;
         }
 
         //Logique de l'odinateur
+        coordinate ordiShoot;
+        ordiShoot.row = rand() % GRID_SIZE;
+        ordiShoot.col = rand() % GRID_SIZE;
+
+        set_hit_ordi(ordiShoot);
+
         if(is_ordi_has_won()){
             printf("Perdu !");
-            break;
+            partyFinished = true;
+            continue;
         }
-
         nbRound++;
     }
 
     //while(1);
     end();
+    char reboot = 'n';
+    printf("Merci d'avoir joue !\n Souhaitez vous recommencer ? (y/n)");
+    scanf("%s", &reboot);
+
+    if('y' == reboot) main();
+
 }
